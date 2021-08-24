@@ -18,5 +18,5 @@ package main
 import "github.com/hmsayem/jetstream-backup-restore-cli/cmd"
 
 func main() {
-  cmd.Execute()
+	cmd.Execute()
 }

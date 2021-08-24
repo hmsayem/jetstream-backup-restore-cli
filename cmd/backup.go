@@ -20,30 +20,27 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var target string
-
 // backupCmd represents the backup command
 var backupCmd = &cobra.Command{
 	Use:   "backup",
-	Short: "backup data",
+	Short: "Backup Data",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		client.Backup(target)
+		client.Backup(stream, auth)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(backupCmd)
-	backupCmd.Flags().StringVar(&target, "target", "", "Specify target stream")
-	//backupCmd.MarkFlagRequired("target")
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// backupCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// backupCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	backupCmd.Flags().StringVar(&stream.Name, "target", "", "specifies target stream")
+	backupCmd.MarkFlagRequired("target")
+	backupCmd.Flags().StringVar(&stream.Dir, "dir", "", "specifies backup directory")
+	backupCmd.MarkFlagRequired("dir")
+	backupCmd.Flags().BoolVar(&auth.TLS, "tls", true, "enables TLS")
+	backupCmd.Flags().StringVar(&auth.Cert, "tlscert", "", "specifies client certificate")
+	backupCmd.Flags().StringVar(&auth.Key, "tlskey", "", "specifies TLS key")
+	backupCmd.Flags().StringVar(&auth.CA, "tlsca", "", "specifies CA certificate")
+	backupCmd.Flags().StringVar(&auth.User, "user", "", "specifies a username")
+	backupCmd.Flags().StringVar(&auth.Password, "password", "", "specifies a password")
+	backupCmd.Flags().StringVar(&auth.Creds, "creds", "", "specifies credential file")
 }

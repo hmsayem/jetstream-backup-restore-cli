@@ -17,6 +17,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/hmsayem/jetstream-backup-restore-cli/client"
 	"github.com/spf13/cobra"
 	"os"
 
@@ -25,12 +26,14 @@ import (
 )
 
 var cfgFile string
+var auth client.Auth
+var stream client.Stream
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "jetstream-backup-restore-cli",
-	Short: "A brief description",
-	Long:  `A longer description`,
+	Short: "Backup and Restore CLI for Jetstream System",
+	Long:  ``,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	//	Run: func(cmd *cobra.Command, args []string) { },
