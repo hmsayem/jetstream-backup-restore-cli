@@ -39,9 +39,9 @@ spec:
   issuerRef:
     name: nats-ca
     kind: Issuer
-  commonName: nats.default.svc.cluster.local
+  commonName: sample-nats-server
   dnsNames:
-  - '*.stan-nats.default.svc.cluster.local'
+  - '*.nats.default.svc.cluster.local'
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -56,6 +56,6 @@ spec:
     kind: Issuer
   commonName: sample-nats-client
   dnsNames:
-  - stan-nats
+  - nats
   ipAddresses:
   - 127.0.0.1
